@@ -10,10 +10,93 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Japanese Street Background -->
-    <div class="street-background" id="street-bg">
-        <!-- Background will be set via CSS or JS with actual image -->
+    <!-- Tokyo Pixel City Background - Like the C++ project -->
+    <div class="city-container" id="city-container">
+        <!-- Sky Layer -->
+        <div class="sky-layer" id="sky-layer">
+            <div class="cloud cloud-1"></div>
+            <div class="cloud cloud-2"></div>
+            <div class="cloud cloud-3"></div>
+        </div>
+        
+        <!-- Mountains/Distant Buildings -->
+        <div class="distant-layer">
+            <div class="distant-building distant-1"></div>
+            <div class="distant-building distant-2"></div>
+            <div class="distant-building distant-3"></div>
+            <div class="distant-building distant-4"></div>
+        </div>
+        
+        <!-- Main City Buildings -->
+        <div class="city-layer">
+            <div class="building building-1">
+                <div class="window window-row-1"></div>
+                <div class="window window-row-2"></div>
+                <div class="window window-row-3"></div>
+                <div class="sign">居酒屋</div>
+            </div>
+            <div class="building building-2">
+                <div class="window window-row-1"></div>
+                <div class="window window-row-2"></div>
+                <div class="sign">コンビニ</div>
+            </div>
+            <div class="building building-3">
+                <div class="window window-row-1"></div>
+                <div class="window window-row-2"></div>
+                <div class="window window-row-3"></div>
+                <div class="window window-row-4"></div>
+                <div class="sign">カフェ</div>
+            </div>
+            <div class="building building-4">
+                <div class="window window-row-1"></div>
+                <div class="window window-row-2"></div>
+                <div class="sign">ラーメン</div>
+            </div>
+            <div class="building building-5">
+                <div class="window window-row-1"></div>
+                <div class="window window-row-2"></div>
+                <div class="window window-row-3"></div>
+                <div class="sign">ゲーム</div>
+            </div>
+        </div>
+        
+        <!-- Train Track -->
+        <div class="track-layer">
+            <div class="train-track"></div>
+            <div class="train" id="train">
+                <div class="train-body">
+                    <div class="train-window"></div>
+                    <div class="train-window"></div>
+                    <div class="train-window"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cherry Blossoms (Spring) -->
+        <div class="cherry-layer">
+            <div class="cherry-tree cherry-1"></div>
+            <div class="cherry-tree cherry-2"></div>
+            <div class="cherry-petal petal-1"></div>
+            <div class="cherry-petal petal-2"></div>
+            <div class="cherry-petal petal-3"></div>
+            <div class="cherry-petal petal-4"></div>
+            <div class="cherry-petal petal-5"></div>
+        </div>
+        
+        <!-- Street Level -->
+        <div class="street-layer">
+            <div class="street-ground"></div>
+            <div class="street-line"></div>
+            <div class="vending-machine"></div>
+            <div class="lamp-post lamp-1"></div>
+            <div class="lamp-post lamp-2"></div>
+        </div>
     </div>
+
+    <!-- Day/Night Toggle Button -->
+    <button class="day-night-toggle" id="dayNightToggle" title="Press T to toggle day/night">
+        <span class="toggle-icon">🌙</span>
+    </button>
 
     <!-- Pixel Cat Sprite -->
     <div class="cat-container" id="cat-container">
@@ -85,7 +168,7 @@
 
         <footer class="pixel-footer">
             <p>&copy; 2024 NekoCode. Built with ❤️ and hosted on GitHub Pages.</p>
-            <p class="assets-note">See ASSETS_GUIDE.md for professional pixel art resources</p>
+            <p class="controls-hint">Press T to toggle day/night | X to start train</p>
         </footer>
     </div>
 

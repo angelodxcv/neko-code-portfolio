@@ -1,7 +1,66 @@
+// Tokyo Pixel City - Like the C++ project
 // Professional Pixel Cat Sprite Sheet Animation System
-// Ready to use with actual sprite sheets from itch.io or other sources
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Day/Night Toggle (Press T)
+    const body = document.body;
+    const dayNightToggle = document.getElementById('dayNightToggle');
+    const skyLayer = document.getElementById('sky-layer');
+    let isNight = false;
+    
+    function toggleDayNight() {
+        isNight = !isNight;
+        body.classList.toggle('night-mode', isNight);
+        dayNightToggle.querySelector('.toggle-icon').textContent = isNight ? '☀️' : '🌙';
+    }
+    
+    dayNightToggle.addEventListener('click', toggleDayNight);
+    
+    // Keyboard controls (like the C++ project)
+    let trainMoving = false;
+    const train = document.getElementById('train');
+    
+    document.addEventListener('keydown', (e) => {
+        const key = e.key.toLowerCase();
+        
+        // T - Toggle Day/Night
+        if (key === 't') {
+            toggleDayNight();
+        }
+        
+        // X - Start train
+        if (key === 'x' && !trainMoving) {
+            trainMoving = true;
+            train.classList.add('moving');
+        }
+        
+        // R - Stop train
+        if (key === 'r' && trainMoving) {
+            trainMoving = false;
+            train.classList.remove('moving');
+        }
+    });
+    
+    // Parallax scrolling effect
+    let lastScrollY = 0;
+    window.addEventListener('scroll', () => {
+        const scrollY = window.pageYOffset;
+        const scrollDiff = scrollY - lastScrollY;
+        
+        // Parallax layers move at different speeds
+        const distantLayer = document.querySelector('.distant-layer');
+        const cityLayer = document.querySelector('.city-layer');
+        
+        if (distantLayer) {
+            distantLayer.style.transform = `translateY(${scrollY * 0.3}px)`;
+        }
+        if (cityLayer) {
+            cityLayer.style.transform = `translateY(${scrollY * 0.5}px)`;
+        }
+        
+        lastScrollY = scrollY;
+    });
+    
     const catContainer = document.getElementById('cat-container');
     const catSprite = document.getElementById('cat-sprite');
     
