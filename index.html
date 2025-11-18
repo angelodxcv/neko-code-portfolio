@@ -5,16 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NekoCode - Android & Web Developer</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Moving Cat -->
-    <div class="cat-container">
-        <img id="cat-sprite" class="cat-sprite" src="assets/tabby-1.svg" alt="Walking cat">
+    <!-- Japanese Street Background -->
+    <div class="street-background">
+        <div class="sky"></div>
+        <div class="mountains"></div>
+        <div class="buildings">
+            <div class="building building-1"></div>
+            <div class="building building-2"></div>
+            <div class="building building-3"></div>
+            <div class="building building-4"></div>
+        </div>
+        <div class="lanterns">
+            <div class="lantern lantern-1"></div>
+            <div class="lantern lantern-2"></div>
+            <div class="lantern lantern-3"></div>
+        </div>
+        <div class="cherry-blossoms">
+            <div class="blossom blossom-1"></div>
+            <div class="blossom blossom-2"></div>
+            <div class="blossom blossom-3"></div>
+            <div class="blossom blossom-4"></div>
+            <div class="blossom blossom-5"></div>
+        </div>
+        <div class="street-ground"></div>
+    </div>
+
+    <!-- Pixel Cat -->
+    <div class="cat-container" id="cat-container">
+        <div class="pixel-cat" id="pixel-cat">
+            <div class="cat-body">
+                <div class="cat-head">
+                    <div class="cat-ear cat-ear-left"></div>
+                    <div class="cat-ear cat-ear-right"></div>
+                    <div class="cat-face">
+                        <div class="cat-eye cat-eye-left"></div>
+                        <div class="cat-eye cat-eye-right"></div>
+                        <div class="cat-nose"></div>
+                        <div class="cat-mouth"></div>
+                    </div>
+                </div>
+                <div class="cat-tail"></div>
+            </div>
+        </div>
     </div>
 
     <!-- Main Content -->
     <div class="container">
-        <header class="hero">
+        <header class="hero" id="hero-section">
             <h1 class="hero-title">
                 <span class="neko">Neko</span><span class="code">Code</span>
             </h1>
@@ -22,43 +64,43 @@
             <p class="hero-description">Building beautiful mobile apps and web experiences</p>
         </header>
 
-        <section class="about">
+        <section class="about pixel-card" id="about-section">
             <h2>About Me</h2>
             <p>Passionate developer specializing in Android app development and modern web technologies. I create intuitive, performant applications that users love.</p>
         </section>
 
-        <section class="skills">
+        <section class="skills pixel-card" id="skills-section">
             <h2>Skills & Technologies</h2>
             <div class="skills-grid">
-                <div class="skill-card">
+                <div class="skill-card pixel-box">
                     <h3>Android Development</h3>
                     <p>Kotlin, Java, Jetpack Compose, Material Design</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card pixel-box">
                     <h3>Web Development</h3>
                     <p>HTML5, CSS3, JavaScript, React, Node.js</p>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card pixel-box">
                     <h3>Tools & Practices</h3>
                     <p>Git, GitHub, CI/CD, Agile, Testing</p>
                 </div>
             </div>
         </section>
 
-        <section class="projects">
+        <section class="projects pixel-card" id="projects-section">
             <h2>Featured Projects</h2>
             <div class="projects-grid">
-                <div class="project-card">
+                <div class="project-card pixel-box">
                     <h3>Android App Project</h3>
                     <p>Modern Android application built with Kotlin and Jetpack Compose.</p>
                     <a href="#" class="project-link">View on GitHub →</a>
                 </div>
-                <div class="project-card">
+                <div class="project-card pixel-box">
                     <h3>Web Application</h3>
                     <p>Responsive web app with modern UI/UX design principles.</p>
                     <a href="#" class="project-link">View on GitHub →</a>
                 </div>
-                <div class="project-card">
+                <div class="project-card pixel-box">
                     <h3>Open Source Contribution</h3>
                     <p>Contributing to open source projects and building developer tools.</p>
                     <a href="#" class="project-link">View on GitHub →</a>
@@ -66,16 +108,16 @@
             </div>
         </section>
 
-        <section class="contact">
+        <section class="contact pixel-card" id="contact-section">
             <h2>Get In Touch</h2>
             <p>Let's collaborate on your next project!</p>
             <div class="contact-links">
-                <a href="https://github.com/yourusername" class="contact-link" target="_blank">GitHub</a>
-                <a href="mailto:your.email@example.com" class="contact-link">Email</a>
+                <a href="https://github.com/yourusername" class="contact-link pixel-button" target="_blank">GitHub</a>
+                <a href="mailto:your.email@example.com" class="contact-link pixel-button">Email</a>
             </div>
         </section>
 
-        <footer>
+        <footer class="pixel-footer">
             <p>&copy; 2024 NekoCode. Built with ❤️ and hosted on GitHub Pages.</p>
         </footer>
     </div>
@@ -83,4 +125,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-
