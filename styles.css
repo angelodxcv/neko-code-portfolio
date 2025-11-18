@@ -221,45 +221,43 @@ body.night-mode .window {
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
-.window-row-1 {
-    top: 20%;
-    left: 20%;
-}
+/* Windows - Building 1 (3 rows, 2 windows each) */
+.building-1 .w1 { top: 20%; left: 20%; }
+.building-1 .w2 { top: 20%; left: 50%; }
+.building-1 .w3 { top: 40%; left: 20%; }
+.building-1 .w4 { top: 40%; left: 50%; }
+.building-1 .w5 { top: 60%; left: 20%; }
+.building-1 .w6 { top: 60%; left: 50%; }
 
-.window-row-1:nth-of-type(2) {
-    left: 50%;
-}
+/* Windows - Building 2 (2 rows, 2 windows each) */
+.building-2 .w1 { top: 25%; left: 20%; }
+.building-2 .w2 { top: 25%; left: 50%; }
+.building-2 .w3 { top: 50%; left: 20%; }
+.building-2 .w4 { top: 50%; left: 50%; }
 
-.window-row-1:nth-of-type(3) {
-    left: 75%;
-}
+/* Windows - Building 3 (4 rows, 2 windows each) */
+.building-3 .w1 { top: 15%; left: 20%; }
+.building-3 .w2 { top: 15%; left: 50%; }
+.building-3 .w3 { top: 35%; left: 20%; }
+.building-3 .w4 { top: 35%; left: 50%; }
+.building-3 .w5 { top: 55%; left: 20%; }
+.building-3 .w6 { top: 55%; left: 50%; }
+.building-3 .w7 { top: 75%; left: 20%; }
+.building-3 .w8 { top: 75%; left: 50%; }
 
-.window-row-2 {
-    top: 40%;
-    left: 20%;
-}
+/* Windows - Building 4 (2 rows, 2 windows each) */
+.building-4 .w1 { top: 25%; left: 20%; }
+.building-4 .w2 { top: 25%; left: 50%; }
+.building-4 .w3 { top: 50%; left: 20%; }
+.building-4 .w4 { top: 50%; left: 50%; }
 
-.window-row-2:nth-of-type(2) {
-    left: 50%;
-}
-
-.window-row-2:nth-of-type(3) {
-    left: 75%;
-}
-
-.window-row-3 {
-    top: 60%;
-    left: 20%;
-}
-
-.window-row-3:nth-of-type(2) {
-    left: 50%;
-}
-
-.window-row-4 {
-    top: 60%;
-    left: 20%;
-}
+/* Windows - Building 5 (3 rows, 2 windows each) */
+.building-5 .w1 { top: 20%; left: 20%; }
+.building-5 .w2 { top: 20%; left: 50%; }
+.building-5 .w3 { top: 40%; left: 20%; }
+.building-5 .w4 { top: 40%; left: 50%; }
+.building-5 .w5 { top: 60%; left: 20%; }
+.building-5 .w6 { top: 60%; left: 50%; }
 
 /* Japanese Signs */
 .sign {
