@@ -5,16 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const catContainer = document.getElementById('cat-container');
     const catSprite = document.getElementById('cat-sprite');
     
-    // Configuration for sprite sheet (update when you add actual sprite sheet)
+    // Configuration for sprite sheet
     const spriteConfig = {
-        // Example: 32x32 sprites, 4 frames for walking
         frameWidth: 32,
         frameHeight: 32,
-        framesPerRow: 4,
-        totalFrames: 4,
-        // Update this path when you download sprite sheet
-        spriteSheet: 'assets/cat-sprite-sheet.png', // Set to null to use fallback
-        useSpriteSheet: false // Set to true when you add sprite sheet
+        walkFrames: 32, // Walk sheet has 32 frames (1024/32)
+        idleFrames: 8,  // Idle sheet has 8 frames (256/32)
+        walkSheet: 'assets/cat-walk-sheet.png',
+        idleSheet: 'assets/cat-idle-sheet.png',
+        useSpriteSheet: true
     };
     
     // Sections the cat can explore
@@ -38,20 +37,34 @@ document.addEventListener('DOMContentLoaded', () => {
     let catY = window.innerHeight * 0.7;
     let facingRight = true;
     
-    // Initialize sprite sheet if available
-    if (spriteConfig.useSpriteSheet && spriteConfig.spriteSheet) {
-        catSprite.style.backgroundImage = `url('${spriteConfig.spriteSheet}')`;
-        catSprite.style.backgroundSize = `auto ${spriteConfig.frameHeight}px`;
+    // Initialize sprite sheet
+    let currentAnimation = 'idle';
+    if (spriteConfig.useSpriteSheet) {
         catSprite.style.width = `${spriteConfig.frameWidth}px`;
         catSprite.style.height = `${spriteConfig.frameHeight}px`;
+        updateAnimation('idle');
+    }
+    
+    function updateAnimation(anim) {
+        if (!spriteConfig.useSpriteSheet) return;
+        currentAnimation = anim;
+        if (anim === 'walk') {
+            catSprite.style.backgroundImage = `url('${spriteConfig.walkSheet}')`;
+            catSprite.style.backgroundSize = `${spriteConfig.walkFrames * spriteConfig.frameWidth}px ${spriteConfig.frameHeight}px`;
+        } else {
+            catSprite.style.backgroundImage = `url('${spriteConfig.idleSheet}')`;
+            catSprite.style.backgroundSize = `${spriteConfig.idleFrames * spriteConfig.frameWidth}px ${spriteConfig.frameHeight}px`;
+        }
+        updateSpriteFrame(0);
     }
     
     // Update sprite frame
     function updateSpriteFrame(frame) {
         if (spriteConfig.useSpriteSheet) {
-            const x = -(frame % spriteConfig.framesPerRow) * spriteConfig.frameWidth;
-            const y = -Math.floor(frame / spriteConfig.framesPerRow) * spriteConfig.frameHeight;
-            catSprite.style.backgroundPosition = `${x}px ${y}px`;
+            const maxFrames = currentAnimation === 'walk' ? spriteConfig.walkFrames : spriteConfig.idleFrames;
+            const clampedFrame = frame % maxFrames;
+            const x = -clampedFrame * spriteConfig.frameWidth;
+            catSprite.style.backgroundPosition = `${x}px 0px`;
         }
         currentFrame = frame;
     }
@@ -73,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
             isWalking = true;
             catState = 'walking';
             catContainer.classList.add('walking');
+            updateAnimation('walk');
             
             // Face the right direction
             if (targetX > catX) {
@@ -89,7 +103,8 @@ document.addEventListener('DOMContentLoaded', () => {
             isWalking = false;
             catState = 'exploring';
             catContainer.classList.remove('walking');
-            updateSpriteFrame(0); // Idle frame
+            updateAnimation('idle');
+            updateSpriteFrame(0);
             
             pauseTimer = 2000 + Math.random() * 3000;
             
@@ -106,7 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
             catState = 'sitting';
             isWalking = false;
             catContainer.classList.remove('walking');
-            updateSpriteFrame(0); // Idle/sit frame
+            updateAnimation('idle');
+            updateSpriteFrame(0);
             
             setTimeout(() => {
                 if (catState === 'sitting') {
@@ -117,16 +133,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     
-    // Animate sprite frames during walking
-    function animateWalkFrames() {
-        if (isWalking && spriteConfig.useSpriteSheet) {
-            currentFrame = (currentFrame + 1) % spriteConfig.totalFrames;
+    // Animate sprite frames
+    function animateFrames() {
+        if (spriteConfig.useSpriteSheet) {
+            if (isWalking) {
+                updateAnimation('walk');
+                currentFrame = (currentFrame + 1) % spriteConfig.walkFrames;
+            } else {
+                updateAnimation('idle');
+                currentFrame = (currentFrame + 1) % spriteConfig.idleFrames;
+            }
             updateSpriteFrame(currentFrame);
         }
     }
     
-    // Run frame animation
-    setInterval(animateWalkFrames, 150); // 150ms per frame
+    // Run frame animation (faster for walk, slower for idle)
+    let animationInterval;
+    function startAnimation() {
+        if (animationInterval) clearInterval(animationInterval);
+        const interval = () => {
+            animateFrames();
+            animationInterval = setTimeout(interval, isWalking ? 50 : 200);
+        };
+        interval();
+    }
+    startAnimation();
     
     // Smooth movement function
     function smoothMoveTo(targetX, targetY, duration = 2000) {
